@@ -316,3 +316,46 @@ Fri 22 Mar 2024 10:32:36 PM UTC:
  tests:  7|1
 total_score: 60/70
 011ff27
+Fri 22 Mar 2024 10:35:23 PM UTC: 
+ exercises.c | 27 ++++++++++++++-------------
+ 1 file changed, 14 insertions(+), 13 deletions(-)
+In file included from test.c:5:
+exercises.c: In function ‘parentesisBalanceados’:
+exercises.c:149:25: error: passing argument 2 of ‘push’ makes pointer from integer without a cast [-Werror=int-conversion]
+  149 |           push(P, cadena[i]);
+      |                   ~~~~~~^~~
+      |                         |
+      |                         char
+In file included from exercises.c:7,
+                 from test.c:5:
+stack.h:11:31: note: expected ‘void *’ but argument is of type ‘char’
+   11 | void push(Stack *stack, void *data) { pushFront(stack, data); }
+      |                         ~~~~~~^~~~
+In file included from test.c:5:
+exercises.c:156:26: error: initialization of ‘char’ from ‘void *’ makes integer from pointer without a cast [-Werror=int-conversion]
+  156 |           char abierto = pop(P);
+      |                          ^~~
+exercises.c:164:33: error: passing argument 2 of ‘push’ makes pointer from integer without a cast [-Werror=int-conversion]
+  164 |                   push(P, cadena[i]);
+      |                           ~~~~~~^~~
+      |                                 |
+      |                                 char
+In file included from exercises.c:7,
+                 from test.c:5:
+stack.h:11:31: note: expected ‘void *’ but argument is of type ‘char’
+   11 | void push(Stack *stack, void *data) { pushFront(stack, data); }
+      |                         ~~~~~~^~~~
+In file included from test.c:5:
+exercises.c:176:25: error: passing argument 2 of ‘push’ makes pointer from integer without a cast [-Werror=int-conversion]
+  176 |           push(P, cadena[i]);
+      |                   ~~~~~~^~~
+      |                         |
+      |                         char
+In file included from exercises.c:7,
+                 from test.c:5:
+stack.h:11:31: note: expected ‘void *’ but argument is of type ‘char’
+   11 | void push(Stack *stack, void *data) { pushFront(stack, data); }
+      |                         ~~~~~~^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+142cb8c

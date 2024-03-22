@@ -144,37 +144,38 @@ int parentesisBalanceados(char *cadena) {
   int i = 0;
   int tamano = 0;
 
-  while(cadena[i] != '\0'){
+  while(cadena[i] != '\0') {
+      if(cadena[i] == '(' || cadena[i] == '{' || cadena[i] == '[') {
+          push(P, cadena[i]);
+          tamano++;
+      } else if(cadena[i] == ')' || cadena[i] == '}' || cadena[i] == ']') {
+          if(tamano == 0){
+              return 0;
+          }
 
-    if(cadena[i] == '(' || cadena[i] == '{' || cadena[i] == '[') {
-      push(P, &cadena[i]);
-      tamano++;
-    }
+          char abierto = pop(P);
 
-    else if(cadena[i] == ')' || cadena[i] == '}' || cadena[i] == ']')
-    {
-      if(tamano == 0){
-        return 0;
+          tamano--;
+
+          if ((abierto == '(' && cadena[i] != ')') ||
+              (abierto == '[' && cadena[i] != ']') ||
+              (abierto == '{' && cadena[i] != '}')) {
+              while (i--) {
+                  push(P, cadena[i]);
+              }
+              return 0;
+          }
       }
-
-      char abierto = *(char*)pop(P);
-      tamano--;
-
-      if ((abierto == '(' && abierto == ')') || 
-          (abierto == '[' && abierto == ']') || 
-          (abierto == '{' && abierto == '}') ){
-        return 0;
-      }
-    }
-    i++;
+      i++;
   }
 
-  if(tamano == 0)
-  {
-    return 1;
-  }
-  else{
-    return 0;
+  if(tamano == 0) {
+      return 1;
+  } else {
+      while (i--) {
+          push(P, cadena[i]);
+      }
+      return 0;
   }
 }
 
