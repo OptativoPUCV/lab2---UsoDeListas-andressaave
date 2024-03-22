@@ -143,13 +143,12 @@ int parentesisBalanceados(char *cadena) {
   int contador = 0;
 
   while (*cadena != '\0') {
-      if (*cadena == '(') {
+      if (*cadena == '(' || *cadena == '[' || *cadena == '{') {
           contador++;
-      } else if (*cadena == ')') {
+      } else if (*cadena == ')' || *cadena == ']' || *cadena == '}') {
           contador--;
       }
 
-     
       if (contador < 0) {
           return 0; 
       }
@@ -157,9 +156,8 @@ int parentesisBalanceados(char *cadena) {
       cadena++;
   }
 
-  
-  if (*cadena == '\0' && contador == 0) {
-      return 1; 
+  if (contador == 0 && *cadena == '\0') {
+      return 1;
   } else {
       return 0;
   }
