@@ -146,8 +146,7 @@ int parentesisBalanceados(char *cadena) {
 
   while(cadena[i] != '\0'){
 
-    if(cadena[i] == '(' || cadena[i] == '{' || cadena[i] == '[')
-    {
+    if(cadena[i] == '(' || cadena[i] == '{' || cadena[i] == '[') {
       push(P, &cadena[i]);
       tamano++;
     }
@@ -161,7 +160,9 @@ int parentesisBalanceados(char *cadena) {
       char abierto = *(char*)pop(P);
       tamano--;
 
-      if ((abierto == '(' && abierto == ')') || (abierto == '[' && abierto == ']') || (abierto == '{' && abierto == '}') ){
+      if ((abierto == '(' && abierto == ')') || 
+          (abierto == '[' && abierto == ']') || 
+          (abierto == '{' && abierto == '}') ){
         return 0;
       }
     }
