@@ -140,26 +140,37 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-  int contador = 0;
+  int contador_parentesis = 0;
+  int contador_corchetes = 0;
+  int contador_llaves = 0;
 
   while (*cadena != '\0') {
-      if (*cadena == '(' || *cadena == '[' || *cadena == '{') {
-          contador++;
-      } else if (*cadena == ')' || *cadena == ']' || *cadena == '}') {
-          contador--;
-      }
-
-      if (contador < 0) {
-          return 0; 
+      if (*cadena == '(') {
+          contador_parentesis++;
+      } else if (*cadena == '[') {
+          contador_corchetes++;
+      } else if (*cadena == '{') {
+          contador_llaves++;
+      } else if (*cadena == ')') {
+          if (contador_parentesis == 0) return 0; 
+        
+          contador_parentesis--;
+      } else if (*cadena == ']') {
+          if (contador_corchetes == 0) return 0; 
+        
+          contador_corchetes--;
+      } else if (*cadena == '}') {
+          if (contador_llaves == 0) return 0; 
+        
+          contador_llaves--;
       }
 
       cadena++;
   }
 
-  if (contador == 0 && *cadena == '\0') {
-      return 1;
-  } else {
-      return 0;
-  }
+  
+  if (contador_parentesis != 0 || contador_corchetes != 0 || contador_llaves != 0) return 0; 
+
+  return 1; 
 }
 
